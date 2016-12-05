@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	portTFTP = 69
+	portTFTP     = 69
+	MaxBlockSize = 1468
 )
 
 func infoLog(m string) {
@@ -73,9 +74,10 @@ Options:
 	}
 
 	ts := tftp.Server{
-		Handler:     handler,
-		InfoLog:     infoLog,
-		TransferLog: transferLog,
+		Handler:      handler,
+		InfoLog:      infoLog,
+		TransferLog:  transferLog,
+		MaxBlockSize: MaxBlockSize,
 	}
 
 	address := fmt.Sprintf("%s:%d", iface_ip, portTFTP)
