@@ -6,7 +6,6 @@ import (
 	"go.universe.tf/netboot/tftp"
 	"log"
 	"net"
-	"os/user"
 	"path/filepath"
 )
 
@@ -36,11 +35,6 @@ Options:
   -h --help            Show this screen.
   -v --version         Show version.
 `
-	user, err := user.Current()
-	if user.Uid != "0" {
-		log.Fatal("You must be root to use this program.")
-	}
-
 	arguments, err := docopt.Parse(usage, nil, true, "tftpd 1.0", false)
 	if err != nil {
 		log.Fatalf("Error %s", err)
